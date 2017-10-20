@@ -5,18 +5,18 @@ class Login extends Component {
 
   handleClick() {
     console.log("Button is clicked")
+    return false;
   }
 
   render() {
     return (
       <div className="Login">
-        <form>
-          <label for="email">E-mail:</label>
+          <h1>Sign in</h1>
+          <label for="email">E-mail</label>
           <input id="email" type="email" name="email" />
-          <label for="password">Password:</label>
+          <label for="password">Password</label>
           <input id="password" type="password" name="password" />
-          <button onClick={() => this.handleClick()}>Log in</button>
-        </form>
+          <button onClick={this.handleClick()}>Log in</button>
       </div>
     );
   }
