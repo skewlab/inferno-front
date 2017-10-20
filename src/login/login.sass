@@ -4,6 +4,7 @@
 	min-width: 300px
 	max-width: 960px
 	width: 30%
+	color: $color-green-dark
 	h1
 		text-align: center
 	label
@@ -15,14 +16,16 @@
 		width: 100%
 		height: 2em
 		font-size: 1.5em
-		border: 2px solid $color-contrast-light
+		border: 2px solid $color-green-light
 		box-sizing: border-box
-		color: $color-dark
+		color: inherit
 		margin-bottom: 0.5em
+		&:focus
+			outline: none
 	button
 		width: 100%
 		height: 2em
-		background-color: $color-contrast-light
+		background-color: $color-green-light
 		color: $color-light
 		border: none
 		font-size: 2em
