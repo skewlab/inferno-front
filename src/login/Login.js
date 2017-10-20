@@ -1,5 +1,5 @@
 import Component from 'inferno-component';
-//import './login.css';
+import './login.css';
 
 class Login extends Component {
 
