@@ -16,7 +16,7 @@ class Login extends Component {
           <input id="email" type="email" name="email" />
           <label for="password">Password</label>
           <input id="password" type="password" name="password" />
-          <button onClick={this.handleClick()}>Log in</button>
+          <button onClick={() => this.handleClick()}>Log in</button>
       </div>
     );
   }
