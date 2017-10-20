@@ -5,6 +5,7 @@
   "dependencies": {
     "inferno": "^3.10.1",
     "inferno-component": "^3.10.1",
+    "inferno-router": "^3.10.1",
     "inferno-scripts": "5.0.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1"
