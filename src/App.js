@@ -1,7 +1,8 @@
 import Component from 'inferno-component';
 import './registerServiceWorker';
-import './app.css'
+import './App.css'
 import Header from './header/Header'
+import Start from './start/Start'
 
 class App extends Component {
   render() {
@@ -9,8 +10,9 @@ class App extends Component {
       <div className="wrapper">
         <Header/>
         <div className="main-content">
-          <p>Main content goes here!</p>
+          <Start/>
         </div>
+
       </div>
       
     );
