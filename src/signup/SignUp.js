@@ -6,12 +6,13 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: null,
+      password: null,
+      repeatPassword: null
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   handleChange(event) {
@@ -21,29 +22,35 @@ class SignUp extends Component {
     if (event.target.id === "password") {
       this.setState({password: event.target.value});
     }
+    if (event.target.id === "repeat-password") {
+      this.setState({repeatPassword: event.target.value});
+    }
   }
 
 
   handleSignUp(event) {
-    console.log('email: ' + this.state.email);
-    console.log('pass: ' + this.state.password);
+    if(this.state.password === this.state.repeatPassword && this.state.email !== null){
+      ApiService.signUp( this.state ).then(
+        res => {
+          // should show up in view that ser is successfully added
+          console.log(res)
+        },
+        error => {
+          // should show up in view that an error occured
+          console.log(error)
+        }
+      );
+    }
     event.preventDefault();
-    ApiService.signUp( this.state ).then(
-      res => {
-        console.log(res)
-      },
-      error => {
-        console.log(error)
-      }
-    );
   }
   
 
   render(props) {
     return (
       <div className="Login">
-          <h1>Sign in</h1>
-          <form onSubmit={this.handleSignIn}>
+          <h1>Sign Up!</h1>
+          <p>And join the marvelous fun!</p>
+          <form onSubmit={this.handleSignUp}>
             <label for="email">E-mail</label>
             <input 
               id="email" 
@@ -58,7 +65,18 @@ class SignUp extends Component {
               name="password" 
               value={this.state.password}
               onInput={this.handleChange} />
-            <input type="submit" value="Submit">Sign Up!</input>
+            <input 
+              id="repeat-password" 
+              type="password" 
+              name="repeat-password" 
+              value={this.state.repeatPassword}
+              onInput={this.handleChange} />
+            <input 
+              type="submit" 
+              value="Submit"
+              disabled={(this.state.email 
+                && this.state.password 
+                && this.state.repeatPassword) ? "" : "disabled"}>Sign Up!</input>
           </form>
       </div>
     );
