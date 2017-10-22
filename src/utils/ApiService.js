@@ -1,22 +1,18 @@
 
-const API = '/api/';
-//http://localhost:3000/api/article/get
-// GET list of all dinosaurs from API
-
-
+/* Make sure CORS is enabled either via proxy or on the backend" */
+const API = 'http://localhost:3000/api/';
 
 function signIn( userCredentials ) {
     console.log(userCredentials)
   return fetch(`${API}signin`,{
     method: "POST",
-    body: userCredentials
+    headers: {
+      "Content-type": "application/json"      
+    },
+    body: JSON.stringify(userCredentials)
   })
   .then(_verifyResponse, _handleError);
 }
-
-
-
-
 
 
 

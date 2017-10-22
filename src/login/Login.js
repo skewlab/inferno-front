@@ -23,26 +23,20 @@ class Login extends Component {
     }
   }
 
-
   handleSignIn(event) {
-    console.log('email: ' + this.state.email);
-    console.log('pass: ' + this.state.password);
-    event.preventDefault();
-    this.signIn()
-  }
-
-  signIn(){
     ApiService.signIn( this.state )
     .then(
       res => {
+        // Handle response
         console.log(res)
       },
       error => {
+        // show error in the view
         console.log(error)
       }
     );
+    event.preventDefault();
   }
-  
 
   render(props) {
     return (
@@ -63,7 +57,7 @@ class Login extends Component {
               name="password" 
               value={this.state.password}
               onInput={this.handleChange} />
-            <input type="submit" value="Submit">Log in</input>
+            <input type="submit" value="Submit">Sign in</input>
           </form>
       </div>
     );

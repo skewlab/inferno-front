@@ -18,6 +18,5 @@
     "build": "npm run build-css && inferno-scripts build",
     "test": "inferno-scripts test --env=jsdom",
     "eject": "inferno-scripts eject"
-  },
-  "proxy": "http://localhost:3000"
+  }
 }
