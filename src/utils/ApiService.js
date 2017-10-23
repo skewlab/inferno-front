@@ -2,6 +2,11 @@
 /* Make sure CORS is enabled either via proxy or on the backend" */
 const API = 'http://localhost:3000/api/';
 
+function getPost( postId ) {
+  return fetch(`${API}posts/${postId}`)
+    .then(_verifyResponse, _handleError);
+}
+
 function signUp( signUpCredentials ) {
   return fetch(`${API}users`,{
     method: "POST",
@@ -42,5 +47,5 @@ function _handleError(error) {
   throw error;
 }
 // // Export ApiService
-const ApiService = { signIn, signUp };
+const ApiService = { signIn, signUp, getPost };
 export default ApiService;
