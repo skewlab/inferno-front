@@ -1,6 +1,6 @@
 import Component from 'inferno-component';
 import './start.css';
-import Login from '../login/Login'
+import SignUp from '../signup/SignUp'
 
 
 class Start extends Component {
@@ -12,7 +12,7 @@ class Start extends Component {
         <p>
           Welcome to a social network built with GO and Inferno!
         </p>
-        <Login/>
+        <SignUp/>
       </div>
     );
   }

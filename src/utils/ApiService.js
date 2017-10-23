@@ -9,14 +9,24 @@
 /* Make sure CORS is enabled either via proxy or on the backend" */
 const API = 'http://localhost:3000/api/';
 
-function signIn( userCredentials ) {
-    console.log(userCredentials)
+function signUp( signUpCredentials ) {
+  return fetch(`${API}users`,{
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"      
+    },
+    body: JSON.stringify( signUpCredentials )
+  })
+.then(_verifyResponse, _handleError);
+}
+
+function signIn( signInCredentials ) {
   return fetch(`${API}signin`,{
     method: "POST",
     headers: {
       "Content-type": "application/json"      
     },
-    body: JSON.stringify(userCredentials)
+    body: JSON.stringify(signInCredentials)
   })
   .then(_verifyResponse, _handleError);
 }
@@ -39,5 +49,5 @@ function _handleError(error) {
   throw error;
 }
 // // Export ApiService
-const ApiService = { signIn };
+const ApiService = { signIn, signUp };
 export default ApiService;
