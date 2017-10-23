@@ -1,3 +1,10 @@
+/*
+  Author: Jonas Johansson
+  Email:  jan.jonas.johansson@gmail.com
+  Github: jjojo
+  Description:
+  Api service with methods to fetch api data
+*/
 
 /* Make sure CORS is enabled either via proxy or on the backend" */
 const API = 'http://localhost:3000/api/';

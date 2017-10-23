@@ -1,3 +1,11 @@
+/*
+  Author: Jonas Johansson
+  Email:  jan.jonas.johansson@gmail.com
+  Github: jjojo
+  Description:
+  Login component connected to api endpoint.
+*/
+
 import Component from 'inferno-component'
 import ApiService from '../utils/ApiService';
 import './login.css';
