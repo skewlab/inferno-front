@@ -1,3 +1,11 @@
+/*
+  Author: Jonas Johansson
+  Email:  jan.jonas.johansson@gmail.com
+  Github: jjojo
+  Description:
+  Sign up component.
+*/
+
 import Component from 'inferno-component'
 import ApiService from '../utils/ApiService';
 import './sign-up.css';
