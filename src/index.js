@@ -13,7 +13,7 @@ const routes = (
 	  <Route path="/login" component={ Login }>
 	    <Route path="/login/:username" component={ Login } />
 	  </Route>
-	  <Route path="*" component={ App }/>
+	  <Route path="/" component={ App }/>
   </Router>
 );
 
