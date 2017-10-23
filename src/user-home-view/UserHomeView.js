@@ -1,3 +1,11 @@
+/*
+Author: Jonas Johansson
+Email:  jan.jonas.johansson@gmail.com
+Github: jjojo
+Description:
+Home view to show, profile info, news feed and online friends
+*/
+
 import Component from 'inferno-component';
 import UserProfile from './user-profile/UserProfile'
 import UserFeed from './user-feed/UserFeed'

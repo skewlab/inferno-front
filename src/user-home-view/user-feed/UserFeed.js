@@ -1,3 +1,11 @@
+/*
+  Author: Jonas Johansson
+  Email:  jan.jonas.johansson@gmail.com
+  Github: jjojo
+  Description:
+  Fetches and display posts to feed
+*/
+
 import Component from 'inferno-component';
 import ApiService from '../../utils/ApiService';
 import './user-feed.css';
@@ -11,22 +19,17 @@ class UserFeed extends Component {
 	}
 
   componentDidMount() {
-    // REMOVE LOOP WHEN API ALLOWS TO FETCH WHOLE FEED
-    // THIS IS JUST FOR TESTING
-    for (var i = 1; i < 4; i++) {
-      ApiService.getPost( i )
-      .then(
-        res => {
-          this.state.feedPosts.push(res)
-          this.setState({
-            feedPosts: this.state.feedPosts
-          });
-        },
-        error => {
-          console.log(error)
-        }
-      );
-    }
+    ApiService.getPost( "all" )
+    .then(
+      res => {
+        this.setState({
+          feedPosts: res
+        });
+      },
+      error => {
+        console.log(error)
+      }
+    );
   }
 
   render(){
@@ -42,6 +45,8 @@ class UserFeed extends Component {
             Author: {post.Userid}
             <br></br>
             Date: {post.Date_created}
+            <br></br>
+            Ups: {post.ups}
           </p>
         </div>
       )}

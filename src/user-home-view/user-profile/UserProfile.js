@@ -1,3 +1,11 @@
+/*
+  Author: Jonas Johansson
+  Email:  jan.jonas.johansson@gmail.com
+  Github: jjojo
+  Description:
+  Info about the user
+*/
+
 import Component from 'inferno-component';
 import './user-profile.css';
 
