@@ -7,42 +7,59 @@
 */
 
 import Component from 'inferno-component';
+import ApiService from '../../utils/ApiService';
+
 import './user-profile.css';
 
 class UserProfile extends Component {
-
-  profileObject = {
-    username: "Jonas",
-    avatar: "http://placebear.com/300/300",
-    webpage: "http://jonasjohansson.net/",
-    age: "25",
-    sex: "male"
+  constructor(props) {
+		super(props);
+		this.state = {
+      profileInfo: '',
+      avatar: ''
+		};
   }
 
-  
+  // SOULD BE RCEIVED FRM SESSION LATER
+  userId = "0c2f89bf-f4d2-4463-8cfe-94422ab1929f"
+
+ 
+  componentDidMount() {
+    ApiService.getProfileInfo( this.userId )
+    .then(
+      res => {
+        console.log(res)
+        this.setState({
+           profileInfo: res,
+           avatar: res.avatar["String"],
+           alias: res.alias["String"]
+        });
+        console.log(this.state.profileInfo.avatar.String)
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+
+  key = "String"
   
   render() {
     return (
       <div className="profile-info">
-        <img src={this.profileObject.avatar} alt="no avatar available"/>
-        <div className="profile-text-info">
-          <h2>{this.profileObject.username}</h2>
-          <ul>
+        <img 
+          src={this.state.avatar }
+          alt="no avatar available"/>
+        <h2>{this.state.alias}</h2>
+        <ul>
+        {Object.keys(this.state.profileInfo).map(key => 
             <li>
-            <span></span>Name: {this.profileObject.username}
+            { key !== "avatar"? this.state.profileInfo[key]["String"]: ''}
             </li>
-            <li>
-            Webpage: {this.profileObject.webpage}
-            </li>
-            <li>
-            Age: {this.profileObject.age}
-            </li>
-            <li>
-            Sex: {this.profileObject.sex}
-            </li>
-
+        )}
           </ul>
-          </div>
+        }
+        
       </div>
     );
   }

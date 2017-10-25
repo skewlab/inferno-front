@@ -7,6 +7,17 @@ function getPost( postId ) {
     .then(_verifyResponse, _handleError);
 }
 
+function getContacts( userId ) {
+  return fetch(`${API}user-connections/${userId}`)
+    .then(_verifyResponse, _handleError);
+}
+
+function getProfileInfo( userId ) {
+  return fetch(`${API}users/${userId}`)
+    .then(_verifyResponse, _handleError);
+}
+
+
 function signUp( signUpCredentials ) {
   return fetch(`${API}users`,{
     method: "POST",
@@ -47,5 +58,10 @@ function _handleError(error) {
   throw error;
 }
 // // Export ApiService
-const ApiService = { signIn, signUp, getPost };
+const ApiService = { 
+  signIn,
+  signUp,
+  getPost,
+  getContacts,
+  getProfileInfo };
 export default ApiService;
