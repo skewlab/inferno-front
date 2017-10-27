@@ -28,13 +28,11 @@ class UserProfile extends Component {
     ApiService.getProfileInfo( this.userId )
     .then(
       res => {
-        console.log(res)
         this.setState({
            profileInfo: res,
            avatar: res.avatar["String"],
            alias: res.alias["String"]
         });
-        console.log(this.state.profileInfo.avatar.String)
       },
       error => {
         console.log(error)

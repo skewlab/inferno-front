@@ -19,12 +19,13 @@ class ContactsList extends Component {
 		};
   }
 
-  userId="test"
+  userId="0c2f89bf-f4d2-4463-8cfe-94422ab1929f"
   
   componentDidMount() {
     ApiService.getContacts( this.userId )
     .then(
       res => {
+        // Should update contacts if contact is added in database
         // this.setState({
         //   contacts: res
         // });
