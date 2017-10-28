@@ -13,7 +13,7 @@ class Header extends Component {
 
   /* For future implementation when user can sign in and not */
   isLoggedIn() {
-    return false;
+    return true;
   }
 
 
