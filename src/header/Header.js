@@ -1,3 +1,9 @@
+/*
+Authors:
+Email:
+Description:
+*/
+
 import Component from 'inferno-component';
 import { Link } from 'inferno-router';
 import './header.css';
@@ -22,7 +28,7 @@ class Header extends Component {
     )
   }
 
-  
+
   /* When not signed in, offer to sign in and about the site info */
   notSignedInHeaderMenu() {
     return (
