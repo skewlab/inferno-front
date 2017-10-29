@@ -44,12 +44,13 @@ class SignIn extends Component {
 		for processing the login.
 	*/
   handleSignIn( event ) {
-
+    const { router } = this.context
 		ApiService.post( 'signin', this.state )
     .then(
       ( res ) => {
         // TODO: Handle response
         console.log( res )
+        router.push("/userhomeview")
       },
       ( error ) => {
         // TODO: show error in the view

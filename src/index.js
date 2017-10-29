@@ -9,6 +9,12 @@ import UserHomeView from './user-home-view/UserHomeView'
 
 const browserHistory = createBrowserHistory();
 
+function authorizedOnly({ props, router }) {
+  // if (!props.signedIn) {
+  //   router.push('/signin');
+  // }
+}
+
 const routes = (
 
   <Router history={ browserHistory }>
@@ -18,7 +24,9 @@ const routes = (
 		<Route path="/signup" component={ SignUp } />
 	  <Route path="/signin" component={ SignIn } />
 		<Route path="/signin/:username" component={ SignIn } />
-		<Route path="/userhomeview" component={ UserHomeView } />
+		<Route path="/userhomeview" 
+			component={ UserHomeView }
+			onEnter={ authorizedOnly } />
 		<Route path="/" component={ App }/>
 
 	</Router>
