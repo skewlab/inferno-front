@@ -19,7 +19,7 @@ class UserFeed extends Component {
 	}
 
   componentDidMount() {
-    ApiService.getPost( "all" )
+    ApiService.get( "posts/all" )
     .then(
       res => {
         this.setState({

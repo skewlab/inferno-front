@@ -3,21 +3,26 @@ import App from './App';
 import './index.css';
 import { Router, Route, IndexRoute } from 'inferno-router';
 import createBrowserHistory from 'history/createBrowserHistory';
-import Login from './login/Login';
+import SignIn from './signin/SignIn'
+import SignUp from './signup/SignUp'
 import UserHomeView from './user-home-view/UserHomeView'
- 
-const browserHistory = createBrowserHistory();
- 
-const routes = (
-  <Router history={ browserHistory }>
-	  <IndexRoute component={ App } />
-	  <Route path="/login" component={ Login }>
-		<Route path="/login/:username" component={ Login } />
-	</Route>
-	<Route path="/userhomeview" component={ UserHomeView } />
 
-	  <Route path="/" component={ App }/>
-  </Router>
+const browserHistory = createBrowserHistory();
+
+const routes = (
+
+  <Router history={ browserHistory }>
+
+	  <IndexRoute component={ App } />
+
+		<Route path="/signup" component={ SignUp } />
+	  <Route path="/signin" component={ SignIn } />
+		<Route path="/signin/:username" component={ SignIn } />
+		<Route path="/userhomeview" component={ UserHomeView } />
+		<Route path="/" component={ App }/>
+
+	</Router>
+
 );
 
-render(routes, document.getElementById('app'));
+render( routes, document.getElementById( 'app' ) );
