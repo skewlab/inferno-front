@@ -25,6 +25,7 @@ class UserFeed extends Component {
         this.setState({
           feedPosts: res
         });
+        //console.log(this.state.feedPosts)
       },
       error => {
         console.log( error )
@@ -38,13 +39,13 @@ class UserFeed extends Component {
         {this.state.feedPosts.map(post =>
         <div className="post">
           <p>
-            Id: {post.Id}
+            Id: {post.id}
             <h2>
-              {post.Content}
+              {post.content}
             </h2>
-            Author: {post.Userid}
+            Author: {post.userid}
             <br></br>
-            Date: {post.Date_created}
+            Date: {post.date_created}
             <br></br>
             Ups: {post.ups}
           </p>
