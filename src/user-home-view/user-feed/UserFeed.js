@@ -11,8 +11,8 @@ import ApiService from '../../utils/ApiService';
 import './user-feed.css';
 
 class UserFeed extends Component {
-  constructor(props) {
-		super(props);
+  constructor( props ) {
+		super( props );
 		this.state = {
 			feedPosts: []
 		};
@@ -27,7 +27,7 @@ class UserFeed extends Component {
         });
       },
       error => {
-        console.log(error)
+        console.log( error )
       }
     );
   }
@@ -35,7 +35,7 @@ class UserFeed extends Component {
   render(){
     return(
       <div className='profile-feed' >
-        {this.state.feedPosts.map(post => 
+        {this.state.feedPosts.map(post =>
         <div className="post">
           <p>
             Id: {post.Id}
@@ -47,6 +47,7 @@ class UserFeed extends Component {
             Date: {post.Date_created}
             <br></br>
             Ups: {post.ups}
+						<button className="up-button">UP!</button>
           </p>
         </div>
       )}
