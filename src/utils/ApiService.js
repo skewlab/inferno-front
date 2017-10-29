@@ -1,74 +1,107 @@
 /*
-  Author: Jonas Johansson
-  Email:  jan.jonas.johansson@gmail.com
-  Github: jjojo
+  Authors: Jonas Johansson, jan.jonas.johansson@gmail.com, github.com/jjojo
+					 Filip Johansson, filip.carl.johansson@gmail.com, github.com/fippli
+
   Description:
   Api service with methods to fetch api data
+
+	NOTE:
+	Make sure CORS is enabled either via proxy or on the backend while developing on two different ports.
+	This should only be configured like this in dev mode.
 */
 
-/* Make sure CORS is enabled either via proxy or on the backend" */
-const API = 'http://localhost:3000/api/';
+import Config from "./Config"
 
-function getPost( postId ) {
-  return fetch(`${API}posts/${postId}`)
-    .then(_verifyResponse, _handleError);
-}
+const ApiService = (function () {
 
-function getContacts( userId ) {
-  return fetch(`${API}user-connections/${userId}`)
-    .then(_verifyResponse, _handleError);
-}
+	var service = {
+		get: get,
+		post: post,
+		put: put,
+		remove: remove
+	}
 
-function getProfileInfo( userId ) {
-  return fetch(`${API}users/${userId}`)
-    .then(_verifyResponse, _handleError);
-}
+	///////////////
+
+	/*
+		Get any endpoint in the api
+	*/
+	function get( endpoint ) {
+		return fetch( Config.API + endpoint ,
+			{
+				method: "GET"
+			})
+			.then(
+				verifyResponse,
+				handleError );
+	};
+
+	/*
+		Post to any endpoint in the api
+	*/
+	function post( endpoint, data ) {
+		return fetch( Config.API + endpoint ,
+			{
+	    	method: "POST",
+	    	headers: {
+	      	"Content-type": "application/json"
+	    	},
+	    	body: JSON.stringify( data )
+	  	})
+			.then(
+				verifyResponse,
+				handleError );
+	};
+
+	/*
+		Update data on any endpoint
+	*/
+	function put( endpoint, data ) {
+		return fetch( Config.API + endpoint,
+			{
+	    	method: "PUT",
+	    	headers: {
+	      	"Content-type": "application/json"
+	    	},
+	    	body: JSON.stringify( data )
+	  	})
+			.then(
+				verifyResponse,
+				handleError );
+	};
+
+	/*
+		Delete from any endpoint
+	*/
+	function remove( endpoint ) {
+		return fetch( Config.API + endpoint,
+			{
+				method: "DELETE"
+			})
+			.then(
+				verifyResponse,
+				handleError );
+	};
+
+	// Verify that the fetched response is JSON
+	function verifyResponse( res ) {
+	  let contentType = res.headers.get( 'content-type' );
+	  if (contentType && contentType.indexOf( 'application/json' ) !== -1) {
+	    return res.json();
+	  } else {
+	    handleError( { message: 'Response was not JSON' } );
+	  }
+	}
+	
+	// Handle fetch errors
+	function handleError( error ) {
+	  console.error( 'An error occurred:', error );
+	  throw error;
+	}
+
+	return service;
+
+})();
 
 
-function signUp( signUpCredentials ) {
-  return fetch(`${API}users`,{
-    method: "POST",
-    headers: {
-      "Content-type": "application/json"      
-    },
-    body: JSON.stringify( signUpCredentials )
-  })
-.then(_verifyResponse, _handleError);
-}
-
-function signIn( signInCredentials ) {
-  return fetch(`${API}signin`,{
-    method: "POST",
-    headers: {
-      "Content-type": "application/json"      
-    },
-    body: JSON.stringify(signInCredentials)
-  })
-  .then(_verifyResponse, _handleError);
-}
-
-
-
-
-// Verify that the fetched response is JSON
-function _verifyResponse(res) {
-  let contentType = res.headers.get('content-type');
-  if (contentType && contentType.indexOf('application/json') !== -1) {
-    return res.json();
-  } else {
-    _handleError({ message: 'Response was not JSON'});
-  }
-}
-// Handle fetch errors
-function _handleError(error) {
-  console.error('An error occurred:', error);
-  throw error;
-}
-// // Export ApiService
-const ApiService = { 
-  signIn,
-  signUp,
-  getPost,
-  getContacts,
-  getProfileInfo };
 export default ApiService;

@@ -12,17 +12,17 @@ import './contacts-list.css';
 
 
 class ContactsList extends Component {
-  constructor(props) {
-		super(props);
+  constructor( props ) {
+		super( props );
 		this.state = {
-			contacts: [{username:"Jonas Johansson"}]
+			contacts: [ { username:"Simon Garfunkel" } ]
 		};
   }
 
-  userId="0c2f89bf-f4d2-4463-8cfe-94422ab1929f"
-  
+  userId="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+
   componentDidMount() {
-    ApiService.getContacts( this.userId )
+    ApiService.get( "my-contacts/" + this.userId )
     .then(
       res => {
         // Should update contacts if contact is added in database
@@ -41,7 +41,7 @@ class ContactsList extends Component {
   render() {
     return (
     <div className="contacts-list">
-      {this.state.contacts.map(contact => 
+      {this.state.contacts.map(contact =>
         <div className="contact">
             <h2>
               {contact.username}
@@ -49,7 +49,7 @@ class ContactsList extends Component {
         </div>
       )}
     </div> /* wrapper ends */
-      
+
     );
   }
 
