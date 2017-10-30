@@ -1,6 +1,6 @@
 /*
-  Authors: Jonas Johansson, jan.jonas.johansson@gmail.com, github.com/jjojo
-					 Filip Johansson, filip.carl.johansson@gmail.com, github.com/fippli
+  Authors: 	Jonas Johansson, jan.jonas.johansson@gmail.com, github.com/jjojo (last: 2017-10-29)
+			Filip Johansson, filip.carl.johansson@gmail.com, github.com/fippli
 
   Description:
   Api service with methods to fetch api data
@@ -18,18 +18,44 @@ const ApiService = (function () {
 		get: get,
 		post: post,
 		put: put,
-		remove: remove
+		remove: remove,
+		auth: auth
 	}
 
 	///////////////
 
 	/*
-		Get any endpoint in the api
+		NOTE:
+		Credentials shouldn't be sent on every 
+		api call maybe... or they should.
+
+		Jonas Johansson 29/10-17
+	*/
+
+	/*
+		Check if authenticated and return pure http statuses
+	*/
+	function auth( ) {
+		return fetch( Config.API + "auth" ,
+			{
+				method: "GET",
+				credentials: 'include'
+			})
+			.then( res => {
+				return res
+			}, error =>{
+				return error
+			});
+	};
+
+	/*
+		Get any endpoint in the api except auth
 	*/
 	function get( endpoint ) {
 		return fetch( Config.API + endpoint ,
 			{
-				method: "GET"
+				method: "GET",
+				credentials: 'include'
 			})
 			.then(
 				verifyResponse,
@@ -42,7 +68,8 @@ const ApiService = (function () {
 	function post( endpoint, data ) {
 		return fetch( Config.API + endpoint ,
 			{
-	    	method: "POST",
+			method: "POST",
+			credentials: 'include',
 	    	headers: {
 	      	"Content-type": "application/json"
 	    	},
@@ -59,9 +86,10 @@ const ApiService = (function () {
 	function put( endpoint, data ) {
 		return fetch( Config.API + endpoint,
 			{
-	    	method: "PUT",
+			method: "PUT",
+			credentials: 'include',
 	    	headers: {
-	      	"Content-type": "application/json"
+	      	"Content-type": "application/json",
 	    	},
 	    	body: JSON.stringify( data )
 	  	})
@@ -76,7 +104,8 @@ const ApiService = (function () {
 	function remove( endpoint ) {
 		return fetch( Config.API + endpoint,
 			{
-				method: "DELETE"
+				method: "DELETE",
+				credentials: 'include'
 			})
 			.then(
 				verifyResponse,
