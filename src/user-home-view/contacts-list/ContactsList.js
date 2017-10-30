@@ -15,20 +15,21 @@ class ContactsList extends Component {
   constructor( props ) {
 		super( props );
 		this.state = {
-			contacts: [ { username:"Simon Garfunkel" } ]
+			contacts: []
 		};
   }
 
-  userId="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  //userId="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
 
   componentDidMount() {
-    ApiService.get( "my-contacts/" + this.userId )
+    ApiService.get( "my-contacts" )
     .then(
       res => {
+        console.log(res)
         // Should update contacts if contact is added in database
-        // this.setState({
-        //   contacts: res
-        // });
+        this.setState({
+          contacts: res
+        });
       },
       error => {
         console.log(error)
@@ -44,7 +45,7 @@ class ContactsList extends Component {
       {this.state.contacts.map(contact =>
         <div className="contact">
             <h2>
-              {contact.username}
+              {contact.alias["String"]}
             </h2>
         </div>
       )}
