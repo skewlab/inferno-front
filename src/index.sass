@@ -1,12 +1,12 @@
 @import globals
-html
+
+html, body
 	margin: 0
 	padding: 0
+	height: 100%
+
 body
-	margin: 0
-	padding: 0
-	background-color: $color-light
-	color: $color-dark
+	background-color: $color-background
 	font-family: Montserrat
 
 form
@@ -22,7 +22,7 @@ button, .button
 	padding: 0.4em 1.2em
 	margin: 1em 0em 1em 1em
 	box-sizing: border-box
-	border-radius: 4px
+	border-radius: $button-radius
 	float: right
 	text-transform: uppercase
 	font-weight: 200
@@ -31,10 +31,3 @@ button, .button
 		color: white
 		transition: 0.15s ease-in-out
 		cursor: pointer
-
-.up-button
-	width: 1em
-	height: 1em
-	border-radius: 100%
-	background-color: $color-background
-	font-family: Montserrat

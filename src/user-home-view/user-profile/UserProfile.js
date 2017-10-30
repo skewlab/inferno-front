@@ -30,8 +30,9 @@ class UserProfile extends Component {
       res => {
         this.setState({
            profileInfo: res,
-           avatar: res.avatar["String"],
-           alias: res.alias["String"]
+           avatar: res.avatar[ "String" ],
+           alias: res.alias[ "String" ],
+					 description: res.description[ "String" ]
         });
       },
       error => {
@@ -46,13 +47,17 @@ class UserProfile extends Component {
     return (
       <div className="profile-info">
         <img
-          src={this.state.avatar }
+          src={ this.state.avatar }
           alt="no avatar available"/>
-        <h2>{this.state.alias}</h2>
+        <h2 className="user-profile-name">{ this.state.alias }</h2>
+
+
+				<p className="user-description">{ this.state.description }</p>
+
         <ul>
-        {Object.keys(this.state.profileInfo).map(key =>
+        { Object.keys( this.state.profileInfo ).map( ( key ) =>
             <li>
-            { key !== "avatar"? this.state.profileInfo[key]["String"]: ''}
+            	{ key !== "avatar"? this.state.profileInfo[ key ][ "String" ] : ''}
             </li>
         )}
           </ul>

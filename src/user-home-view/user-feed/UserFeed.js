@@ -8,6 +8,7 @@
 
 import Component from 'inferno-component';
 import ApiService from '../../utils/ApiService';
+import UpButton from '../../components/up-button/UpButton';
 import './user-feed.css';
 
 class UserFeed extends Component {
@@ -32,25 +33,34 @@ class UserFeed extends Component {
     );
   }
 
+	/*
+		TODO:
+		If the user have upped a post, the
+		One button for adding ups
+		one for removing them
+	*/
   render(){
     return(
       <div className='profile-feed' >
-        {this.state.feedPosts.map(post =>
-        <div className="post">
-          <p>
-            Id: {post.Id}
-            <h2>
-              {post.Content}
-            </h2>
-            Author: {post.Userid}
-            <br></br>
-            Date: {post.Date_created}
-            <br></br>
-            Ups: {post.ups}
-						<button className="up-button">UP!</button>
-          </p>
-        </div>
-      )}
+        { this.state.feedPosts.map( post =>
+	        <div className="post">
+
+						<div className="post-author">
+							Author: { post.userid }
+							Date: { post.date_created }
+							<UpButton upped={ false } ups={ post.ups } contentId={ post.id } />
+						</div>
+
+						<div className="post-content">
+							<p>
+								{ post.content }
+							</p>
+						</div>
+
+
+	        </div>
+      		)
+				}
       </div>
     )
   }

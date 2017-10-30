@@ -1,20 +1,12 @@
-html {
-  margin: 0;
-  padding: 0; }
-
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%; }
+
+body {
   background-color: rgba(242, 242, 242, 0.7);
   font-family: Montserrat; }
 
-<<<<<<< HEAD
-.up-button {
-  width: 1em;
-  height: 1em;
-  border-radius: 100%;
-  background-color: rgba(255, 242, 242, 0.7); }
-=======
 form {
   box-sizing: border-box; }
   form input {
@@ -37,4 +29,3 @@ button, .button {
     color: white;
     transition: 0.15s ease-in-out;
     cursor: pointer; }
->>>>>>> dev
