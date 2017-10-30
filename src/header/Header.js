@@ -24,11 +24,11 @@ class Header extends Component {
   signOut( ){
     ApiService.post( "signout" ).then(
       res => {
-        console.log(res)
-        //need to lear how to route with inferno router...
+        console.log( res )
+        // NOTE: need to lear how to route with inferno router...
         document.location.href = "/";
       }, error => {
-        console.log(error)
+        console.log( error )
       }
     )
   }
