@@ -15,7 +15,7 @@ class UserProfile extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
-      profileInfo: '',
+      profileInfo: [],
       avatar: ''
 		};
   }
@@ -28,10 +28,15 @@ class UserProfile extends Component {
     ApiService.get( 'users/' +  this.userId )
     .then(
       res => {
+        console.log(res)
         this.setState({
-           profileInfo: res,
-           avatar: res.avatar["String"],
-           alias: res.alias["String"]
+          alias: res.alias["String"],
+          avatar: res.avatar["String"],
+          birthdate: res.birthdate["String"],
+          description: res.description["String"],
+          email: res.email["String"],
+          phonenumber: res.phonenumber["String"],
+          website: res.website["String"]
         });
       },
       error => {
@@ -50,14 +55,22 @@ class UserProfile extends Component {
           alt="no avatar available"/>
         <h2>{this.state.alias}</h2>
         <ul>
-        {Object.keys(this.state.profileInfo).map(key =>
-            <li>
-            { key !== "avatar"? this.state.profileInfo[key]["String"]: ''}
-            </li>
-        )}
+          <li>
+            {this.state.description}
+          </li>
+          <li>
+          { this.state.birthdate ? 'Birthdate: ': '' } { this.state.birthdate }
+          </li>
+          <li>
+          { this.state.website ? 'Website: ': '' } { this.state.website }
+          </li>
+          <li>
+          { this.state.phonenumber ? 'Phone number: ': '' } { this.state.phonenumber }
+          </li>
+          <li>
+          { this.state.email ? 'Email: ': '' } { this.state.email }
+          </li>
           </ul>
-        }
-
       </div>
     );
   }
