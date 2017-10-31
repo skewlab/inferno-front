@@ -19,8 +19,6 @@ class ContactsList extends Component {
 		};
   }
 
-  //userId="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-
   componentDidMount() {
     ApiService.get( "my-contacts" )
     .then(
