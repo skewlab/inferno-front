@@ -2,7 +2,7 @@
 */
 
 const Config = {
-  API: "http://localhost:3001/api/"
+  API: "http://localhost:<port>/api/"
 }
 
 export default Config;
