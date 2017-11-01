@@ -20,10 +20,6 @@ class UserProfile extends Component {
 		};
   }
 
-  // SOULD BE RCEIVED FRM SESSION LATER
-  //userId = "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-
-
   componentDidMount() {
     ApiService.get( 'users/me' )
     .then(
