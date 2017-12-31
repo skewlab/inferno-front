@@ -11,19 +11,19 @@ import ApiService from './utils/ApiService'
 const browserHistory = createBrowserHistory();
 
 function authorizedOnly({ props, router }) {
-	ApiService.auth().then( 
-		res => {
-			// for debugging console.log(res.json())
-			if( res.status !== 200){
-				router.push('/signin');
-			}
-			if( res.status === 200){
-				router.push("/userhomeview")
-			}
-	}, error =>{
-		// TODO: Redirect to a 400 forbidden page or server error page
-		console.log(error)
-	})
+  ApiService.auth().then(
+    res => {
+      // for debugging console.log(res.json())
+      if( res.status !== 200){
+        router.push('/signin');
+      }
+      if( res.status === 200){
+        router.push("/userhomeview")
+      }
+  }, error =>{
+    // TODO: Redirect to a 400 forbidden page or server error page
+    console.log(error)
+  })
 }
 
 
@@ -31,17 +31,17 @@ const routes = (
 
   <Router history={ browserHistory }>
 
-	  <IndexRoute 
-			component={ App }
-			onEnter={ authorizedOnly } />
+    <IndexRoute
+      component={ App }
+      onEnter={ authorizedOnly } />
 
-		<Route path="/signup" component={ SignUp } />
-	  <Route path="/signin" component={ SignIn } />
-		<Route path="/signin/:username" component={ SignIn } />
-		<Route path="/userhomeview" 
-			component={ UserHomeView }
-			onEnter={ authorizedOnly } />
-	</Router>
+    <Route path="/signup" component={ SignUp } />
+    <Route path="/signin" component={ SignIn } />
+    <Route path="/signin/:username" component={ SignIn } />
+    <Route path="/userhomeview"
+      component={ UserHomeView }
+      onEnter={ authorizedOnly } />
+  </Router>
 
 );
 

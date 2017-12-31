@@ -8,16 +8,17 @@
 
 import Component from 'inferno-component';
 import ApiService from '../../utils/ApiService';
+import Avatar from '../../components/avatar/Avatar';
 
 import './user-profile.css';
 
 class UserProfile extends Component {
-  constructor(props) {
-		super(props);
-		this.state = {
+  constructor( props ) {
+    super( props );
+    this.state = {
       profileInfo: [],
       avatar: ''
-		};
+    };
   }
 
   componentDidMount() {
@@ -26,13 +27,13 @@ class UserProfile extends Component {
       res => {
         console.log(res)
         this.setState({
-          alias: res.alias["String"],
-          avatar: res.avatar["String"],
-          birthdate: res.birthdate["String"],
-          description: res.description["String"],
-          email: res.email["String"],
-          phonenumber: res.phonenumber["String"],
-          website: res.website["String"]
+          alias: res.alias[ "String" ],
+          avatar: res.avatar[ "String" ],
+          birthdate: res.birthdate[ "String" ],
+          description: res.description[ "String" ],
+          email: res.email[ "String" ],
+          phonenumber: res.phonenumber[ "String" ],
+          website: res.website[ "String" ]
         });
       },
       error => {
@@ -46,27 +47,26 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="profile-info">
-        <img
-          src={this.state.avatar }
-          alt="no avatar available"/>
-        <h2>{this.state.alias}</h2>
+        <Avatar avatar={ this.state.avatar } />
+        <h2 className="user-profile-name">{ this.state.alias }</h2>
+
+
+        <p className="user-description">{ this.state.description }</p>
+
         <ul>
           <li>
-            {this.state.description}
+          <i className="fa fa-gift" aria-hidden="true"></i> { this.state.birthdate ? ' ': '' } { this.state.birthdate }
           </li>
           <li>
-          { this.state.birthdate ? 'Birthdate: ': '' } { this.state.birthdate }
+          <i className="fa fa-television" aria-hidden="true"></i> { this.state.website ? ' ': '' } { this.state.website }
           </li>
           <li>
-          { this.state.website ? 'Website: ': '' } { this.state.website }
+          <i className="fa fa-phone" aria-hidden="true"></i> { this.state.phonenumber ? ' ': '' } { this.state.phonenumber }
           </li>
           <li>
-          { this.state.phonenumber ? 'Phone number: ': '' } { this.state.phonenumber }
+          <i class="fa fa-envelope" aria-hidden="true"></i> { this.state.email ? ' ': '' } { this.state.email }
           </li>
-          <li>
-          { this.state.email ? 'Email: ': '' } { this.state.email }
-          </li>
-          </ul>
+        </ul>
       </div>
     );
   }

@@ -8,15 +8,17 @@ contacts-list to show your contacts, and who is online right now
 
 import Component from 'inferno-component';
 import ApiService from '../../utils/ApiService';
+import Avatar from '../../components/avatar/Avatar';
+import UserAvatarAlias from '../../components/user-avatar-alias/UserAvatarAlias';
 import './contacts-list.css';
 
 
 class ContactsList extends Component {
   constructor( props ) {
-		super( props );
-		this.state = {
-			contacts: []
-		};
+    super( props );
+    this.state = {
+      contacts: []
+    };
   }
 
   componentDidMount() {
@@ -40,11 +42,10 @@ class ContactsList extends Component {
   render() {
     return (
     <div className="contacts-list">
+      <h2>Contacts</h2>
       {this.state.contacts.map(contact =>
         <div className="contact">
-            <h2>
-              {contact.alias["String"]}
-            </h2>
+          <UserAvatarAlias avatar={ contact.avatar[ "String" ] } alias={ contact.alias[ "String" ] }/>
         </div>
       )}
     </div> /* wrapper ends */
